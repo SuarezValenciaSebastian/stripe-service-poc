@@ -6,7 +6,13 @@ const PORT = process.env.PORT ?? 1337;
 
 const app = express();
 
-app.use(express.json())
+app.use(
+  express.json({
+    verify: (request, _response, buffer) => {
+      request.raw = buffer;
+    },
+  })
+);
 app.use(cors());
 
 app.get("/health", (_request, response) => {

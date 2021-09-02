@@ -1,0 +1,38 @@
+[
+  {
+    "id": "SUBSCRIPTION_1",
+    "name": "Monthly",
+    "price": 99,
+    "subscription": true,
+    "stripe": {
+      "priceId": "price_1JTF9WDCxmubgxr2qqOWmtIg"
+    }
+  },
+  {
+    "id": "SUBSCRIPTION_2",
+    "name": "Quarterly",
+    "price": 60,
+    "subscription": true,
+    "stripe": {
+      "priceId": ""
+    }
+  },
+  {
+    "id": "SUBSCRIPTION_3",
+    "name": "Monthly",
+    "price": 30,
+    "subscription": true,
+    "stripe": {
+      "priceId": ""
+    }
+  },
+  {
+    "id": "PAYMENT_1",
+    "name": "Lifetime subscription",
+    "price": 150,
+    "subscription": false,
+    "stripe": {
+      "priceId": ""
+    }
+  }
+]
