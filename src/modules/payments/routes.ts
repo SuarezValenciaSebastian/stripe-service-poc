@@ -1,9 +1,5 @@
-import express, { Router } from "express";
-import {
-  createPaymentIntent,
-  createSubscription,
-  processWebhook,
-} from "./controller";
+import { Router } from "express";
+import { createPaymentIntent } from "./controller";
 import { productIdValidationSchema } from "./validations";
 import { validator } from "../../utils/validation";
 import { getProduct } from "../products/controller";
@@ -23,25 +19,5 @@ router.post(
     response.json({ clientSecret: paymentIntent.client_secret });
   }
 );
-
-router.post("/subscription-intents", async (request, response) => {
-  const { customerId, productId } = request.body;
-  const product = getProduct(productId);
-  if (!product) {
-    return response.sendStatus(404);
-  }
-  const subscriptionIntent = await createSubscription(
-    customerId,
-    product.stripe.priceId
-  );
-  response.json(subscriptionIntent);
-});
-
-router.post("/webhook", async (request, response) => {
-  const event = request.raw;
-  const signature = request.headers["stripe-signature"] as string; // Validate signature not undefined
-  processWebhook(event, signature);
-  response.sendStatus(200);
-});
 
 export default router;
